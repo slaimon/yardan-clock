@@ -1,0 +1,21 @@
+* {
+    background-color: black;
+}
+
+#clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.digit {
+    width: 15%;
+}
+
+.segment:not(.s_on) {
+    color: #100
+}
+
+.segment.s_on {
+    color:red;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Yardan Clock</title>
+</head>
+<body>
+    <div id="clock">
+    </div>
+</body>
+<script type="module">
+    import {Clock} from "./clock.js";
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    clock = new Clock(document.getElementById("clock"), 4);
+
+    let n = 0;
+    while (true) {
+        clock.display(n);
+        await sleep(500);
+        n++;
+    }
+</script>
+</html>
