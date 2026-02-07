@@ -27,6 +27,8 @@ class Clock {
     }
 
     display(num) {
+        num = num % (Math.pow(6, self.num_digits));
+
         // convert the number to a base-6 string
         let num_string = num
             .toString(6)
