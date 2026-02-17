@@ -1,4 +1,4 @@
-export {Clock};
+export {Clock, ThemeSelector};
 
 const digit = (place) => 
 `<svg class="digit" id="digit_${place}" width="153.46mm" height="153.52mm" version="1.1" viewBox="0 0 153.46 153.52" xmlns="http://www.w3.org/2000/svg">
@@ -11,6 +11,11 @@ const digit = (place) =>
     <path fill="currentColor" class="segment s_e" d="m153.34 302.95-30.304-51.599 2.2049-6.6146h5.7326l33.073 58.208z"/>
     </g>
 </svg>`;
+
+const themes = [
+    "dark",
+    "light",
+]
 
 class Clock {
     constructor(parent, num_digits) {
@@ -62,4 +67,33 @@ function digit_display(digit, num) {
     if (!segments[num])
         return;
     activate_segments(digit, segments[num]);
+}
+
+const theme_button = (theme_func) =>
+`<input type=button onclick="${theme_func}">`
+
+class ThemeSelector {
+    constructor(parent) {
+        this.div = parent;
+
+        for (let theme_name of themes) {
+            this.create_button(theme_name);
+        }
+
+        this.current_theme = "dark";
+        document.body.classList.add(this.current_theme);
+    }
+
+    create_button(theme_name) {
+        let button = document.createElement("button");
+        button.classList.add("theme-button");
+        button.onclick = () => this.apply(theme_name);
+        this.div.appendChild(button);
+    }
+    
+    apply(theme) {
+        document.body.classList.remove(this.current_theme);
+        document.body.classList.add(theme);
+        this.current_theme = theme;
+    }
 }

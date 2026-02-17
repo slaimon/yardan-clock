@@ -1,5 +1,6 @@
-#clock {
+body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -8,12 +9,37 @@
     width: 15%;
 }
 
+#clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#theme-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 32px;
+}
+
+button.theme-button {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    margin: 10px;
+    background-color: inherit;
+}
+
 body.dark {
     background-color: black;
 }
 
-body.light {
-    background-color: #ffd;
+.dark #theme-select {
+    border-color: #555;
+    box-shadow: 3px 3px 3px #fcc;
 }
 
 .dark .segment:not(.s_on) {
@@ -24,10 +50,19 @@ body.light {
     color:red;
 }
 
+body.light {
+    background-color: #ffd;
+}
+
+.light #theme-select {
+    border-color: #555;
+    box-shadow: 3px 3px 3px #333;
+}
+
 .light .segment:not(.s_on) {
     color: #eec
 }
 
 .light .segment.s_on {
-    color: #210;
+    color: #333;
 }

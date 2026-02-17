@@ -6,18 +6,21 @@
     <link rel="stylesheet" href="style.css">
     <title>Yardan Clock</title>
 </head>
-<body class="dark">
+<body>
     <div id="clock">
+    </div>
+    <div id="theme-select">
     </div>
 </body>
 <script type="module">
-    import {Clock} from "./clock.js";
+    import {Clock, ThemeSelector} from "./clock.js";
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    clock = new Clock(document.getElementById("clock"), 4);
+    let selector = new ThemeSelector(document.getElementById("theme-select"))
+    let clock = new Clock(document.getElementById("clock"), 4);
 
     let n = 0;
     while (true) {
