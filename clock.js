@@ -63,14 +63,3 @@ function digit_display(digit, num) {
         return;
     activate_segments(digit, segments[num]);
 }
-
-function clock_display(num) {
-    let num_string = num.toString(6);
-    let digits = clock.children();
-
-    let i = 0;
-    for (digit of digits) {
-        digit_display(digit, parseInt(num_string[i]));
-        i++;
-    }
-}
