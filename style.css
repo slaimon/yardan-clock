@@ -1,8 +1,25 @@
+.dark {
+    --bg-color: black;
+    --selector-border-color: #555;
+    --selector-shadow-color: #fcc;
+    --segment-off-color: #100;
+    --segment-on-color: red;
+}
+
+.light {
+    --bg-color: #ffd;
+    --selector-border-color: #555;
+    --selector-shadow-color: #333;
+    --segment-off-color: #eec;
+    --segment-on-color: #333;
+}
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: var(--bg-color);
 }
 
 .digit {
@@ -20,8 +37,9 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    border-style: solid;
-    border-width: 2px;
+
+    border: solid 2px var(--selector-border-color);
+    box-shadow: 3px 3px 3px var(--selector-shadow-color);
     border-radius: 32px;
 }
 
@@ -33,36 +51,10 @@ button.theme-button {
     background-color: inherit;
 }
 
-body.dark {
-    background-color: black;
+.segment:not(.s_on) {
+    color: var(--segment-off-color);
 }
 
-.dark #theme-select {
-    border-color: #555;
-    box-shadow: 3px 3px 3px #fcc;
-}
-
-.dark .segment:not(.s_on) {
-    color: #100
-}
-
-.dark .segment.s_on {
-    color:red;
-}
-
-body.light {
-    background-color: #ffd;
-}
-
-.light #theme-select {
-    border-color: #555;
-    box-shadow: 3px 3px 3px #333;
-}
-
-.light .segment:not(.s_on) {
-    color: #eec
-}
-
-.light .segment.s_on {
-    color: #333;
+.segment.s_on {
+    color: var(--segment-on-color);
 }
