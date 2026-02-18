@@ -1,7 +1,7 @@
 .dark {
     --bg-color: black;
     --selector-border-color: #555;
-    --selector-shadow-color: #fcc;
+    --selector-shadow-color: #333;
     --segment-off-color: #100;
     --segment-on-color: red;
 }
@@ -36,7 +36,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
 
     border: solid 2px var(--selector-border-color);
     box-shadow: 3px 3px 3px var(--selector-shadow-color);
