@@ -4,6 +4,11 @@
     align-items: center;
 }
 
+#day-indicator {
+    margin: 2%;
+    width: 3%;
+}
+
 .digit {
     width: 15%;
 }

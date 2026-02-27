@@ -1,41 +1,85 @@
 export {Clock};
 
 const digit = (place) => 
-`<svg class="digit" id="digit_${place}" width="153.46mm" height="153.52mm" version="1.1" viewBox="0 0 153.46 153.52" xmlns="http://www.w3.org/2000/svg">
+`<svg class="digit" id="digit_${place}" fill="currentColor" width="153.46mm" height="153.52mm" version="1.1" viewBox="0 0 153.46 153.52" xmlns="http://www.w3.org/2000/svg">
     <g transform="translate(-59.531 -149.43)" stroke-width="0">
-    <path fill="currentColor" class="segment s_b" d="m150.81 150.81s-8.8191-1e-3 -8.8202 2e-3l-50.711 152.13h13.229l46.302-138.91z"/>
-    <path fill="currentColor" class="segment s_d" d="m153.46 150.81h8.8194l50.712 152.14h-13.229l-46.302-138.91z"/>
-    <path fill="currentColor" class="segment s_a" d="m152.14 235.48h-23.812l-2.6458 7.9375h52.917l-2.6458-7.9375z"/>
-    <path fill="currentColor" class="segment s_a" d="m85.99 243.42h-23.812l-2.6458-7.9375h52.917l-2.6458 7.9375z"/>
-    <path fill="currentColor" class="segment s_c" d="m70.031 150.81c-7.321-12.465 37.113 63.193 45.063 76.729l-2.2049 6.6146h-5.7326l-47.625-83.344z"/>
-    <path fill="currentColor" class="segment s_e" d="m153.34 302.95-30.304-51.599 2.2049-6.6146h5.7326l33.073 58.208z"/>
+    <path class="segment s_b" d="m150.81 150.81s-8.8191-1e-3 -8.8202 2e-3l-50.711 152.13h13.229l46.302-138.91z"/>
+    <path class="segment s_d" d="m153.46 150.81h8.8194l50.712 152.14h-13.229l-46.302-138.91z"/>
+    <path class="segment s_a" d="m152.14 235.48h-23.812l-2.6458 7.9375h52.917l-2.6458-7.9375z"/>
+    <path class="segment s_a" d="m85.99 243.42h-23.812l-2.6458-7.9375h52.917l-2.6458 7.9375z"/>
+    <path class="segment s_c" d="m70.031 150.81c-7.321-12.465 37.113 63.193 45.063 76.729l-2.2049 6.6146h-5.7326l-47.625-83.344z"/>
+    <path class="segment s_e" d="m153.34 302.95-30.304-51.599 2.2049-6.6146h5.7326l33.073 58.208z"/>
     </g>
 </svg>`;
 
 class Clock {
-    constructor(parent, num_digits) {
-        self.parent = parent;
-        self.num_digits = num_digits;
-        self.digits = new Array(num_digits);
-
+    constructor(parent, num_digits, num = 0) {
+        // clock internal logic
+        this.num_digits = num_digits;
+        this.max_num = 2*Math.pow(6, 6);
+        this.num = num;
+        this.running = false;
+        
+        // HTML elements
+        this.parent = parent;
+        this.day_indicator = document.getElementById("day-indicator-circle");
+        this.digits = new Array(num_digits);
         for(let i = 0; i < num_digits; i++) {
             parent.insertAdjacentHTML("afterbegin", digit(i));
         }
         for(let i = 0; i < num_digits; i++) {
-            self.digits[i] = parent.children[i];
+            this.digits[i] = parent.children[i];
+        }
+
+        this.update();
+    }
+
+    isDay(num = this.num) {
+        return num < this.max_num/2;
+    }
+
+    increment(add = 1) {
+        this.num = (this.num + add) % this.max_num;
+        this.update()
+    }
+
+    regular_increment(speed = 1) {
+        this.increment();
+        setTimeout(()=>(this.regular_increment(speed)), 1000/speed)
+    }
+
+    start(speed = 1) {
+        this.regular_increment(speed);
+    }
+
+    update() {
+        if (this.isDay()) {
+            this.day = true;
+        } else {
+            this.day = false;
+        }
+        this.update_day_indicator();
+        this.update_display();
+    }
+
+    update_day_indicator() {
+        if (this.day) {
+            this.day_indicator.classList.add("s_on");
+        }
+        else {
+            this.day_indicator.classList.remove("s_on");
         }
     }
 
-    display(num) {
-        num = num % (Math.pow(6, self.num_digits));
-
+    update_display() {
+        let display_num = this.num % Math.pow(6,6);
         // convert the number to a base-6 string
-        let num_string = num
+        let num_string = display_num
             .toString(6)
-            .padStart(self.num_digits, "0");
+            .padStart(6, "0");
 
-        for (let i = 0; i < num_digits; i++) {
-            digit_display(self.digits[i], parseInt(num_string[i]));
+        for (let i = 0; i < this.num_digits; i++) {
+            digit_display(this.digits[i], parseInt(num_string[i]));
         }
     }
 }
