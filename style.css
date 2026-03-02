@@ -15,24 +15,22 @@
 
 body.dark {
     background-color: black;
-}
 
+    .segment[data-state="off"] {
+        color: #151010
+    }
+    .segment[data-state="on"] {
+        color:red;
+    }
+}
+    
 body.light {
     background-color: #ffd;
-}
 
-.dark .segment[data-state="off"] {
-    color: #100
-}
-
-.dark .segment[data-state="on"] {
-    color:red;
-}
-
-.light .segment[data-state="off"] {
-    color: #eec
-}
-
-.light .segment[data-state="on"] {
-    color: #210;
+    .segment[data-state="off"] {
+        color: #eec
+    }
+    .segment[data-state="on"] {
+        color: #210;
+    }
 }
