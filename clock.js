@@ -64,10 +64,10 @@ class Clock {
 
     update_day_indicator() {
         if (this.day) {
-            this.day_indicator.classList.add("s_on");
+            this.day_indicator.dataset.state = "on";
         }
         else {
-            this.day_indicator.classList.remove("s_on");
+            this.day_indicator.dataset.state = "off";
         }
     }
 
@@ -95,10 +95,10 @@ const segments = {
 
 function activate_segments(digit, list) {
     digit.querySelectorAll("*")
-        .forEach(segment => segment.classList.remove("s_on"));
+        .forEach(segment => segment.dataset.state = "off");
     for (let letter of list) {
         digit.querySelectorAll(".s_" + letter)
-            .forEach(segment => segment.classList.add("s_on"));
+            .forEach(segment => segment.dataset.state = "on");
     }
 }
 

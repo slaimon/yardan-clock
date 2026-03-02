@@ -21,18 +21,18 @@ body.light {
     background-color: #ffd;
 }
 
-.dark .segment:not(.s_on) {
+.dark .segment[data-state="off"] {
     color: #100
 }
 
-.dark .segment.s_on {
+.dark .segment[data-state="on"] {
     color:red;
 }
 
-.light .segment:not(.s_on) {
+.light .segment[data-state="off"] {
     color: #eec
 }
 
-.light .segment.s_on {
+.light .segment[data-state="on"] {
     color: #210;
 }
