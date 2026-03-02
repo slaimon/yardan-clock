@@ -11,26 +11,32 @@
 
 .digit {
     width: 12%;
-}
 
-body.dark {
-    background-color: black;
-
-    .segment[data-state="off"] {
-        color: #151010
-    }
-    .segment[data-state="on"] {
-        color:red;
+    &[data-hidden] {
+        display: none;
     }
 }
-    
-body.light {
-    background-color: #ffd;
 
-    .segment[data-state="off"] {
-        color: #eec
+body {
+    &.dark {
+        background-color: black;
+
+        .segment[data-state="off"] {
+            color: #151010
+        }
+        .segment[data-state="on"] {
+            color:red;
+        }
     }
-    .segment[data-state="on"] {
-        color: #210;
+        
+    &.light {
+        background-color: #ffd;
+
+        .segment[data-state="off"] {
+            color: #eec
+        }
+        .segment[data-state="on"] {
+            color: #210;
+        }
     }
 }

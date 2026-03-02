@@ -15,6 +15,7 @@ const digit = (place) =>
 class Clock {
     constructor(parent, num_digits, num = 0) {
         // clock internal logic
+        const max_digits = 6;
         this.num_digits = num_digits;
         this.max_num = 2*Math.pow(6, 6);
         this.num = num;
@@ -23,12 +24,15 @@ class Clock {
         // HTML elements
         this.parent = parent;
         this.day_indicator = document.getElementById("day-indicator-circle");
-        this.digits = new Array(num_digits);
-        for(let i = 0; i < num_digits; i++) {
+        this.digits = new Array(max_digits);
+        for(let i = 0; i < max_digits; i++) {
             parent.insertAdjacentHTML("afterbegin", digit(i));
         }
-        for(let i = 0; i < num_digits; i++) {
+        for(let i = 0; i < max_digits; i++) {
             this.digits[i] = parent.children[i];
+            if (i >= num_digits) {
+                this.digits[i].dataset.hidden = '';
+            }
         }
 
         this.update();
