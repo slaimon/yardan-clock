@@ -13,7 +13,7 @@
                 <path class="segment" data-state="on" d="M14.666,0C6.578,0,0,6.58,0,14.668c0,8.087,6.578,14.666,14.666,14.666s14.668-6.579,14.668-14.666
                 C29.334,6.58,22.754,0,14.666,0z M14.666,25.334C8.784,25.334,4,20.549,4,14.668C4,8.785,8.784,4,14.666,4
                 c5.883,0,10.668,4.785,10.668,10.668C25.334,20.549,20.547,25.334,14.666,25.334z"/>
-                <circle id="day-indicator-circle" fill="currentColor" class="segment" cx="14.667" cy="14.667" r="10" />
+                <circle id="day-indicator-circle" class="segment" cx="14.667" cy="14.667" r="10" />
             </g>
         </svg>
     </div>
@@ -21,7 +21,7 @@
 <script type="module">
     import {Clock} from "./clock.js";
 
-    clock = new Clock(document.getElementById("clock"), 4, Math.pow(6,6)-100);
-    clock.start(216);
+    clock = new Clock(document.getElementById("clock"), 6, Math.pow(6,6)-100);
+    clock.start(1);
 </script>
 </html>
