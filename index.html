@@ -19,7 +19,7 @@
 <script type="module">
     import {Clock} from "./clock.js";
 
-    clock = new Clock(document.getElementById("clock"), 6, Math.pow(6,6)-100);
+    let clock = new Clock(document.getElementById("digits"), 6, Math.pow(6,6)-100);
     clock.start(1);
 </script>
 </html>
