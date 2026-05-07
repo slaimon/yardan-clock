@@ -1,5 +1,10 @@
 :root {
-    --clock-size: 1.5;
+    --clock-size: 2;
+    --indicator-margin: 0;
+    --indicator-width: 4rem;
+    --digit-margin: 2rem;
+    --digit-width: 12rem;
+    font-size: 6px;
 }
 
 body {
@@ -12,6 +17,7 @@ body {
 
 #clock {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -19,14 +25,18 @@ body {
     transform-origin: center;
 }
 
+#digits {
+    width: calc((2 * var(--digit-margin) + var(--digit-width)) * 3);
+}
+
 #day-indicator {
-    margin: 2%;
-    width: 3%;
+    margin: var(--indicator-margin);
+    width: var(--indicator-width);
 }
 
 .digit {
-    margin: 2%;
-    width: 12%;
+    margin: var(--digit-margin);
+    width: var(--digit-width);
 
     &[data-hidden] {
         display: none;
