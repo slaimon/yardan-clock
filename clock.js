@@ -23,12 +23,12 @@ const segments = {
 }
 
 class Clock {
-    constructor(parent, num_digits, num = 0) {
+    constructor(parent, num_digits, start = 0) {
         // clock internal logic
         const max_digits = 6;
         this.num_digits = num_digits;
         this.max_num = 2*Math.pow(6, 6);
-        this.num = num;
+        this.time = start;
         this.running = false;
         
         // HTML elements
@@ -48,12 +48,12 @@ class Clock {
         this.update();
     }
 
-    isDay(num = this.num) {
-        return num < this.max_num/2;
+    isDay(time = this.time) {
+        return time < this.max_num/2;
     }
 
     increment(add = 1) {
-        this.num = (this.num + add) % this.max_num;
+        this.time = (this.time + add) % this.max_num;
         this.update()
     }
 
@@ -86,7 +86,7 @@ class Clock {
     }
 
     update_display() {
-        let display_num = this.num % Math.pow(6,6);
+        let display_num = this.time % Math.pow(6,6);
         // convert the number to a base-6 string
         let num_string = display_num
             .toString(6)
